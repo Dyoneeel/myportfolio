@@ -26,7 +26,13 @@ themeToggle?.addEventListener('click', () => {
 
 // Scroll reveal
 if (typeof AOS !== 'undefined') {
-    AOS.init({ duration: 650, easing: 'ease-out-cubic', once: true, offset: 80, mirror: false });
+    AOS.init({
+        duration: 650,
+        easing: 'ease-out-cubic',
+        once: true,
+        offset: 80,
+        mirror: false
+    });
 }
 
 // Mobile navigation
@@ -35,16 +41,30 @@ const navLinks = document.getElementById('navLinks');
 
 function setMenuOpen(open) {
     if (!hamburger || !navLinks) return;
+
     hamburger.classList.toggle('active', open);
     navLinks.classList.toggle('active', open);
     hamburger.setAttribute('aria-expanded', String(open));
-    hamburger.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    hamburger.setAttribute(
+        'aria-label',
+        open ? 'Close navigation' : 'Open navigation'
+    );
+
     hamburger.querySelectorAll('.line').forEach((line, index) => {
         line.style.transform = '';
         line.style.opacity = '';
-        if (open && index === 0) line.style.transform = 'translateY(9px) rotate(45deg)';
-        if (open && index === 1) line.style.opacity = '0';
-        if (open && index === 2) line.style.transform = 'translateY(-9px) rotate(-45deg)';
+
+        if (open && index === 0) {
+            line.style.transform = 'translateY(9px) rotate(45deg)';
+        }
+
+        if (open && index === 1) {
+            line.style.opacity = '0';
+        }
+
+        if (open && index === 2) {
+            line.style.transform = 'translateY(-9px) rotate(-45deg)';
+        }
     });
 }
 
@@ -58,28 +78,60 @@ document.querySelectorAll('#navLinks a').forEach(link => {
 
 // Header scroll state. One listener handles both shadow and hide-on-scroll behavior.
 const header = document.querySelector('header');
-let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop || 0;
-window.addEventListener('scroll', () => {
-    if (!header) return;
-    const currentScroll = window.pageYOffset || document.documentElement.scrollTop || 0;
-    header.style.boxShadow = currentScroll > 50 ? '0 5px 20px rgba(0,0,0,0.2)' : 'none';
-    if (currentScroll > lastScrollTop + 4 && currentScroll > 80) {
-        header.classList.add('hide-nav');
-    } else if (currentScroll < lastScrollTop - 4 || currentScroll <= 20) {
-        header.classList.remove('hide-nav');
-    }
-    lastScrollTop = Math.max(0, currentScroll);
-}, { passive: true });
+let lastScrollTop =
+    window.pageYOffset ||
+    document.documentElement.scrollTop ||
+    0;
+
+window.addEventListener(
+    'scroll',
+    () => {
+        if (!header) return;
+
+        const currentScroll =
+            window.pageYOffset ||
+            document.documentElement.scrollTop ||
+            0;
+
+        header.style.boxShadow =
+            currentScroll > 50
+                ? '0 5px 20px rgba(0,0,0,0.2)'
+                : 'none';
+
+        if (
+            currentScroll > lastScrollTop + 4 &&
+            currentScroll > 80
+        ) {
+            header.classList.add('hide-nav');
+        } else if (
+            currentScroll < lastScrollTop - 4 ||
+            currentScroll <= 20
+        ) {
+            header.classList.remove('hide-nav');
+        }
+
+        lastScrollTop = Math.max(0, currentScroll);
+    },
+    { passive: true }
+);
 
 // Smooth scrolling for same-page anchors only.
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (event) {
         const href = this.getAttribute('href');
+
         if (!href || href === '#') return;
+
         const target = document.querySelector(href);
+
         if (!target) return;
+
         event.preventDefault();
-        window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+
+        window.scrollTo({
+            top: target.offsetTop - 80,
+            behavior: 'smooth'
+        });
     });
 });
 
@@ -96,92 +148,236 @@ const formStatus = document.getElementById('formStatus');
 if (contactForm && formStatus) {
     contactForm.addEventListener('submit', async event => {
         event.preventDefault();
-        const submitButton = contactForm.querySelector('button[type="submit"]');
+
+        const submitButton =
+            contactForm.querySelector('button[type="submit"]');
+
         if (!window.emailjs) {
-            formStatus.textContent = 'Email delivery is not configured yet. Please contact me directly by email.';
+            formStatus.textContent =
+                'Email delivery is not configured yet. Please contact me directly.';
             formStatus.className = 'form-status is-error';
             return;
         }
 
         submitButton?.setAttribute('disabled', 'disabled');
-        if (submitButton) submitButton.textContent = 'Sending...';
+
+        if (submitButton) {
+            submitButton.textContent = 'Sending...';
+        }
+
         formStatus.textContent = '';
         formStatus.className = 'form-status';
 
         try {
-            emailjs.init({ publicKey: emailJsConfig.publicKey });
-            await emailjs.sendForm(emailJsConfig.serviceId, emailJsConfig.templateId, contactForm);
+            emailjs.init({
+                publicKey: emailJsConfig.publicKey
+            });
+
+            // Keep the HTML form fields simple while also providing
+            // the exact variable names used by the EmailJS template.
+            const nameValue =
+                contactForm.elements.name?.value.trim() || '';
+
+            const emailValue =
+                contactForm.elements.email?.value.trim() || '';
+
+            const subjectValue =
+                contactForm.elements.subject?.value.trim() || '';
+
+            const syncField = (name, value) => {
+                let field = contactForm.querySelector(
+                    `[data-emailjs-field="${name}"]`
+                );
+
+                if (!field) {
+                    field = document.createElement('input');
+                    field.type = 'hidden';
+                    field.name = name;
+                    field.dataset.emailjsField = name;
+                    contactForm.appendChild(field);
+                }
+
+                field.value = value;
+            };
+
+            // The current EmailJS template uses:
+            // {{name}}, {{email}}, {{title}}, and {{message}}.
+            syncField('user_name', nameValue);
+            syncField('user_email', emailValue);
+            syncField('title', subjectValue);
+            syncField('from_name', nameValue);
+            syncField('reply_to', emailValue);
+
+            await emailjs.sendForm(
+                emailJsConfig.serviceId,
+                emailJsConfig.templateId,
+                contactForm
+            );
+
             contactForm.reset();
-            formStatus.textContent = 'Your message was sent successfully.';
-            formStatus.className = 'form-status is-success';
+
+            formStatus.textContent =
+                'Your message was sent successfully.';
+
+            formStatus.className =
+                'form-status is-success';
+
         } catch (error) {
-            formStatus.textContent = 'Something went wrong. Please try again or email me directly.';
-            formStatus.className = 'form-status is-error';
+            // IMPORTANT:
+            // This shows the real EmailJS error in the browser console.
+            console.error(
+                'EmailJS send failed:',
+                error?.text || error
+            );
+
+            formStatus.textContent =
+                'Unable to send your message right now. Please try again or email me directly.';
+
+            formStatus.className =
+                'form-status is-error';
+
         } finally {
             submitButton?.removeAttribute('disabled');
-            if (submitButton) submitButton.textContent = 'Send Message';
+
+            if (submitButton) {
+                submitButton.textContent = 'Send Message';
+            }
         }
     });
 }
 
 // Project carousel
 const carouselTimers = [];
+
 document.querySelectorAll('[data-carousel]').forEach(carousel => {
-    const track = carousel.querySelector('.works-carousel-track');
-    const cards = [...carousel.querySelectorAll('.project-card-carousel')];
+    const track =
+        carousel.querySelector('.works-carousel-track');
+
+    const cards = [
+        ...carousel.querySelectorAll('.project-card-carousel')
+    ];
+
     if (!track || cards.length < 2) return;
 
     let activeCard = 0;
+
     const timer = window.setInterval(() => {
         activeCard = (activeCard + 1) % cards.length;
-        track.scrollTo({ left: cards[activeCard].offsetLeft, behavior: 'smooth' });
+
+        track.scrollTo({
+            left: cards[activeCard].offsetLeft,
+            behavior: 'smooth'
+        });
     }, 4000);
+
     carouselTimers.push(timer);
 });
 
 // Image modal
-const imageModal = document.getElementById('imageModal');
-const imageModalClose = document.getElementById('imageModalClose');
-const imageModalImg = document.getElementById('imageModalImg');
+const imageModal =
+    document.getElementById('imageModal');
 
-const openImageModal = (trigger) => {
-    const imgSrc = trigger?.getAttribute('data-img');
-    if (!imgSrc || !imageModal || !imageModalImg) return;
+const imageModalClose =
+    document.getElementById('imageModalClose');
 
-    const imgAlt = trigger.getAttribute('data-img-alt') || 'Project full-size preview';
+const imageModalImg =
+    document.getElementById('imageModalImg');
+
+const openImageModal = trigger => {
+    const imgSrc =
+        trigger?.getAttribute('data-img');
+
+    if (
+        !imgSrc ||
+        !imageModal ||
+        !imageModalImg
+    ) {
+        return;
+    }
+
+    const imgAlt =
+        trigger.getAttribute('data-img-alt') ||
+        'Project full-size preview';
+
     imageModalImg.src = imgSrc;
     imageModalImg.alt = imgAlt;
+
     imageModal.classList.add('open');
-    imageModal.setAttribute('aria-hidden', 'false');
+    imageModal.setAttribute(
+        'aria-hidden',
+        'false'
+    );
+
     document.body.classList.add('modal-open');
+
     imageModalClose?.focus();
 };
 
-document.querySelectorAll('.project-image-clickable').forEach(trigger => {
-    trigger.addEventListener('click', () => openImageModal(trigger));
-});
+document
+    .querySelectorAll('.project-image-clickable')
+    .forEach(trigger => {
+        trigger.addEventListener(
+            'click',
+            () => openImageModal(trigger)
+        );
+    });
 
 const closeModal = () => {
     if (!imageModal) return;
+
     imageModal.classList.remove('open');
-    imageModal.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('modal-open');
-    if (imageModalImg) imageModalImg.src = '';
+
+    imageModal.setAttribute(
+        'aria-hidden',
+        'true'
+    );
+
+    document.body.classList.remove(
+        'modal-open'
+    );
+
+    if (imageModalImg) {
+        imageModalImg.src = '';
+    }
 };
 
-imageModalClose?.addEventListener('click', closeModal);
-imageModal?.addEventListener('click', event => {
-    if (event.target === imageModal) closeModal();
-});
-document.addEventListener('keydown', event => {
-    if (event.key === 'Escape') closeModal();
-});
+imageModalClose?.addEventListener(
+    'click',
+    closeModal
+);
 
-window.addEventListener('load', () => document.body.classList.add('loaded'));
-
-document.addEventListener('DOMContentLoaded', () => {
-    const copyrightElem = document.querySelector('.copyright');
-    if (copyrightElem) {
-        copyrightElem.textContent = `© ${new Date().getFullYear()} Jonel Andamon. ALL RIGHTS RESERVED.`;
+imageModal?.addEventListener(
+    'click',
+    event => {
+        if (event.target === imageModal) {
+            closeModal();
+        }
     }
-});
+);
+
+document.addEventListener(
+    'keydown',
+    event => {
+        if (event.key === 'Escape') {
+            closeModal();
+        }
+    }
+);
+
+window.addEventListener(
+    'load',
+    () => document.body.classList.add('loaded')
+);
+
+document.addEventListener(
+    'DOMContentLoaded',
+    () => {
+        const copyrightElem =
+            document.querySelector('.copyright');
+
+        if (copyrightElem) {
+            copyrightElem.textContent =
+                `© ${new Date().getFullYear()} Jonel Andamon. ALL RIGHTS RESERVED.`;
+        }
+    }
+);
