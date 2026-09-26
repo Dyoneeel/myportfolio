@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: RAWR Casino - Jonel Andamon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" href="portfolio.css">
+    <style>
+        .project-detail-hero {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            background: none;
+        }
+        .project-detail-hero h1 {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .project-detail-hero .project-category {
+            font-size: 1.2rem;
+            color: var(--muted-text-color);
+        }
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .project-gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 2px solid var(--primary-dark);
+        }
+        .project-detail-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .project-detail-section {
+            margin-bottom: 4rem;
+        }
+        .project-detail-section h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-dark);
+            padding-bottom: 0.5rem;
+        }
+        .project-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .project-links .action-button {
+            background-color: var(--primary);
+            color: var(--bg-dark);
+            font-weight: bold;
+        }
+         .project-links .action-button:hover {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+        }
+    </style>
+</head>
+<body>
+    <div class="top-shadow"></div>
+    <div class="bottom-shadow"></div>
+    
+    <header>
+        <div class="nav-container">
+            <div class="mobile-logo"><a href="index.html"><img src="images/logo.png" alt="Main Logo"></a></div>
+            <div class="hamburger" id="hamburger"><div class="line"></div><div class="line"></div><div class="line"></div></div>
+            <nav class="nav-links" id="navLinks">
+                <a href="about.html" data-aos="fade-down">About</a>
+                <a href="work.html" data-aos="fade-down" data-aos-delay="100" class="active">Work</a>
+                <div class="logo" data-aos="fade-down" data-aos-delay="200"><a href="index.html"><img src="images/logo.png" alt="Main Logo"></a></div>
+                <a href="skill.html" data-aos="fade-down" data-aos-delay="300">Skills</a>
+                <a href="contact.html" data-aos="fade-down" data-aos-delay="400">Contact</a>
+            </nav>
+            <button class="theme-toggle" type="button" aria-label="Switch to light mode" title="Switch to light mode" aria-pressed="false">
+                <span class="theme-icon" aria-hidden="true"></span>
+                <span class="theme-label">Light mode</span>
+            </button>
+        </div>
+    </header>
+
+    <section class="project-detail-hero" data-aos="fade-up">
+        <h1>RAWR CASINO</h1>
+        <p class="project-category">Decentralized Web Application</p>
+    </section>
+
+    <section class="section dark-section">
+        <div class="container project-detail-content">
+
+            <div class="project-gallery" data-aos="fade-up">
+                <img src="images/rawr-casino.png" alt="RAWR Casino main interface">
+                </div>
+
+            <div class="project-detail-section" data-aos="fade-up">
+                <h2>About This Project</h2>
+                <p class="details">RAWR casino is a decentralized e-casino platform where users can mine RAWR tokens, exchange them for casino tickets to bet, win, and earn using our custom crypto token. The goal was to create a functional and engaging gaming environment that leverages blockchain for transparent and secure transactions. I was responsible for both the front-end user interface and the back-end logic, including the smart contract integration.</p>
+            </div>
+            
+            <div class="project-detail-section" data-aos="fade-up">
+                <h2>Key Features</h2>
+                <ul class="project-features">
+                    <li>Mine RAWR token and convert to casino tickets.</li>
+                    <li>Play 5 different casino games to earn more tickets.</li>
+                    <li>Convert tickets back to RAWR token.</li>
+                    <li>Withdraw RAWR token directly to a Metamask wallet.</li>
+                    <li>Secure and transparent betting system via blockchain.</li>
+                </ul>
+            </div>
+
+            <div class="project-detail-section" data-aos="fade-up">
+                <h2>Technical Sheet</h2>
+                <p class="details">The core technologies used to bring this project to life include:</p>
+                <div class="tech-stack">
+                    <span>HTML5</span>
+                    <span>CSS3</span>
+                    <span>JavaScript</span>
+                    <span>PHP</span>
+                    <span>MySQL</span>
+                    <span>MetaMask</span>
+                    <span>Ethers.js</span>
+                    <span>Hardhat</span>
+                    <span>Solidity</span>
+                </div>
+            </div>
+
+            <div class="project-detail-section" data-aos="fade-up">
+                <h2>Project Links</h2>
+                <div class="project-links">
+                    <a href="contact.html" class="action-button">View Live Demo</a>
+                    <a href="work.html" class="action-button">Repository</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links" data-aos="fade-up">
+            <a href="https://www.facebook.com/share/1BYpJdVybT/" target="_blank" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--primary)"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-1.35c-.538 0-.65.221-.65.778v1.222h2l-.209 2h-1.791v7h-3v-7h-2v-2h2v-2.308c0-1.769.931-2.692 3.029-2.692h1.971v3z"/></svg></a>
+            <a href="https://www.instagram.com/_dyoneeell?igsh=d3g4NmZldGcwbHEw" target="_blank" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--primary)"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+            <a href="https://www.linkedin.com/in/jonel-andamon-7ba1b735b?trk=contact-info" target="_blank" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--primary)"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z"/></svg></a>
+        </div>
+        <p class="copyright"></p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="portfolio.js"></script>
+</body>
+</html>
