@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Selected software, web development, and Computer Engineering projects by Jonel Andamon.">
-    <title>Jonel's Work</title>
+    <meta name="description" content="Explore Jonel Andamon's software and Computer Engineering projects including LibLocker, RAWR Casino, TourGo, and more. Full-stack web applications, embedded systems, and mobile development work.">
+    <meta property="og:title" content="Projects & Work | Jonel Andamon">
+    <meta property="og:description" content="Full-stack web applications, embedded systems, and Computer Engineering projects by Jonel Andamon.">
+    <meta property="og:type" content="website">
+    <title>Projects & Work | Jonel Andamon</title>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <link rel="stylesheet" href="portfolio.css">
+    <link rel="icon" href="images/logo.png">
 </head>
 <body>
     <div class="top-shadow"></div>
@@ -44,10 +48,12 @@
         </div>
     </header>
 
-    <section class="hero" data-aos="fade-up" data-aos-delay="500">
+    <section class="hero work-hero" data-aos="fade-up" data-aos-delay="500">
         <div class="container">
+            <p class="eyebrow">Selected Projects</p>
             <h1>MY WORK</h1>
-            <p class="subtitle">Engineering Solutions Through Code</p>
+            <p class="subtitle">Building practical software and connected systems</p>
+            <p class="hero-copy">From embedded systems and RFID integration to full-stack web applications and mobile interfaces, here's a selection of projects that demonstrate my technical approach and development capabilities.</p>
         </div>
         <div class="scroll-indicator">
             <span></span>
@@ -56,11 +62,14 @@
 
    <section class="section dark-section">
     <div class="container">
-        <h2 class="section-title" data-aos="fade-up">My Works</h2>
+        <div class="work-intro" data-aos="fade-up">
+            <h2 class="section-title">Featured Project</h2>
+            <p class="section-subtitle">My most comprehensive technical work combining software, hardware, and system integration</p>
+        </div>
         
         <div class="vertical-projects">
             
-            <div class="project-card-vertical featured-project-card" data-aos="fade-up" data-aos-delay="200">
+            <div id="liblocker" class="project-card-vertical featured-project-card" data-aos="fade-up" data-aos-delay="200">
                 <div class="project-image-vertical" style="background-image: url('images/liblocker/deployed.jpg')"></div>
                 <div class="project-info">
                     <div class="featured-label">FEATURED PROJECT</div>
@@ -81,12 +90,23 @@
                         <span>RFID</span>
                     </div>
                     <div class="button-group" style="margin-top: 1.5rem;">
-                        <a href="liblocker.html" class="action-button">View Case Study</a>
+                        <a href="liblocker.html" class="action-button">View Project</a>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
 
-            <div class="project-card-vertical" data-aos="fade-up" data-aos-delay="300">
+<section class="section">
+    <div class="container">
+        <div class="work-intro" data-aos="fade-up">
+            <h2 class="section-title">Web Applications</h2>
+            <p class="section-subtitle">Full-stack projects demonstrating database design, backend logic, and frontend interfaces</p>
+        </div>
+        
+        <div class="vertical-projects">
+            <div id="rawr" class="project-card-vertical" data-aos="fade-up" data-aos-delay="300">
                 <div class="project-image-vertical" 
                      style="background-image: url('images/rawr-casino.png')"></div>
                 <div class="project-info">
@@ -96,27 +116,27 @@
                         <span class="project-date">2025</span>
                     </div>
                     <p class="project-description">
-                        RAWR casino is a decentralized e-casino platform where users can mine RAWR tokens, exchange it to casino tickets to bet, win, and earn using our custom crypto token.
+                        A full-stack casino web application with user authentication, database-driven game functionality, and casino-style gaming interfaces built with PHP and MySQL.
                     </p>
                     <div class="tech-stack">
-                        <span>html</span>
-                        <span>css</span>
-                        <span>js</span>
-                        <span>php</span>
-                        <span>mysql</span>
-                        <span>metamask</span>
-                        <span>ethers.js</span>
-                        <span>hardhat</span>
+                        <span>PHP</span>
+                        <span>MySQL</span>
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="project-role-info" style="margin-top: 1rem; color: var(--primary); font-size: 0.9rem;">
+                        <strong>Role:</strong> Developer
                     </div>
                     <div class="button-group" style="margin-top: 1.5rem;">
-                        <a href="project-template.html">
-                            <button class="action-button">View Project</button>
+                        <a href="contact.html">
+                            <button class="action-button">Ask About This Project</button>
                         </a>
                     </div>
                 </div>
             </div>
 
-            <div class="project-card-vertical" data-aos="fade-up" data-aos-delay="400">
+            <div id="tourgo" class="project-card-vertical" data-aos="fade-up" data-aos-delay="400">
                 <div class="project-image-vertical" 
                      style="background-image: url('images/tourgo.png')"></div>
                 <div class="project-info">
@@ -126,23 +146,27 @@
                         <span class="project-date">2025</span>
                     </div>
                     <p class="project-description">
-                        TourGo is a comprehensive car rental service webapp. Users can search for cars, rent vehicles, and manage their bookings. The platform features dedicated dashboards for customers, agencies, and administrators to streamline operations and enhance user experience.
+                        A full-stack car rental platform with authentication, vehicle management, and booking functionality. Features dedicated dashboards for customers, rental agencies, and administrators to manage the complete rental workflow.
                     </p>
                     <div class="tech-stack">
-                        <span>MySQL</span>
                         <span>PHP</span>
+                        <span>MySQL</span>
                         <span>HTML5</span>
                         <span>CSS3</span>
                         <span>JavaScript</span>
                     </div>
+                    <div class="project-role-info" style="margin-top: 1rem; color: var(--primary); font-size: 0.9rem;">
+                        <strong>Role:</strong> Developer
+                    </div>
                     <div class="button-group" style="margin-top: 1.5rem;">
-                        <a href="contact.html"> <button class="action-button">Ask about this project</button>
+                        <a href="contact.html">
+                            <button class="action-button">Ask About This Project</button>
                         </a>
                     </div>
                 </div>
             </div>
 
-            <div class="project-card-vertical" data-aos="fade-up" data-aos-delay="500">
+            <div id="todoodle" class="project-card-vertical" data-aos="fade-up" data-aos-delay="500">
                 <div class="project-image-vertical" 
                      style="background-image: url('images/todoodle.png')"></div>
                 <div class="project-info">
@@ -152,7 +176,7 @@
                         <span class="project-date">2025</span>
                     </div>
                     <p class="project-description">
-                        To-Doodle Time is a simple and intuitive to-do list webapp. Users can add, update, and delete tasks to organize their daily activities efficiently.
+                        A responsive task management web application with real-time updates. Users can add, edit, and delete tasks to organize their daily activities with an intuitive interface.
                     </p>
                     <div class="tech-stack">
                         <span>Node.js</span>
@@ -160,65 +184,31 @@
                         <span>CSS3</span>
                         <span>JavaScript</span>
                     </div>
+                    <div class="project-role-info" style="margin-top: 1rem; color: var(--primary); font-size: 0.9rem;">
+                        <strong>Role:</strong> Solo Developer
+                    </div>
                     <div class="button-group" style="margin-top: 1.5rem;">
-                        <a href="contact.html"> <button class="action-button">Ask about this project</button>
+                        <a href="contact.html">
+                            <button class="action-button">Ask About This Project</button>
                         </a>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
 
-            <div class="project-card-vertical" data-aos="fade-up">
+<section class="section dark-section">
+    <div class="container">
+        <div class="work-intro" data-aos="fade-up">
+            <h2 class="section-title">Mobile & Other Projects</h2>
+            <p class="section-subtitle">Cross-platform development and specialized applications</p>
+        </div>
+        
+        <div class="vertical-projects">
+            <div id="escape" class="project-card-vertical" data-aos="fade-up">
                 <div class="project-image-vertical" 
                      style="background-image: url('images/game.png')"></div>
-                <div class="project-info">
-                    <h3>MY PORTFOLIO</h3>
-                    <div class="project-meta">
-                        <span class="project-category">Web Development</span>
-                        <span class="project-date">2025</span>
-                    </div>
-                    <p class="project-description">
-                        A modern, responsive portfolio website showcasing technical skills and projects.
-                    </p>
-                    <div class="tech-stack">
-                        <span>HTML5</span>
-                        <span>CSS3</span>
-                        <span>JavaScript</span>
-                    </div>
-                    <div class="button-group" style="margin-top: 1.5rem;">
-                        <a href="contact.html"> <button class="action-button">Ask about this project</button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card-vertical" data-aos="fade-up" data-aos-delay="100">
-                <div class="project-image-vertical" 
-                     style="background-image: url('images/project.jpg')"></div>
-                <div class="project-info">
-                    <h3>GAME GROUNDS</h3>
-                    <div class="project-meta">
-                        <span class="project-category">Web Application</span>
-                        <span class="project-date">2024</span>
-                    </div>
-                    <p class="project-description">
-                        A gaming community platform featuring game information Full-stack implementation with custom backend.
-                    </p>
-                    <div class="tech-stack">
-                        <span>PHP</span>
-                        <span>MySQL</span>
-                        <span>JavaScript</span>
-                        <span>HTML5</span>
-                    </div>
-                    <div class="button-group" style="margin-top: 1.5rem;">
-                        <a href="contact.html"> <button class="action-button">Ask about this project</button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card-vertical" data-aos="fade-up" data-aos-delay="200">
-                <div class="project-image-vertical" 
-                     style="background-image: url('images/project4.jpg')"></div>
                 <div class="project-info">
                     <h3>ESCAPE</h3>
                     <div class="project-meta">
@@ -226,17 +216,24 @@
                         <span class="project-date">2024</span>
                     </div>
                     <p class="project-description">
-                        A snake and ladder like game but with portals and wormholes. A multiplayer offline game where the first to reach the 100 tile, wins.
+                        A Flutter-based multiplayer mobile game inspired by Snake and Ladder, featuring portals, wormholes, and power-ups. Players race to reach the final tile in offline local multiplayer mode.
                     </p>
                     <div class="tech-stack">
                         <span>Flutter</span>
+                        <span>Dart</span>
+                    </div>
+                    <div class="project-role-info" style="margin-top: 1rem; color: var(--primary); font-size: 0.9rem;">
+                        <strong>Role:</strong> Frontend Developer
                     </div>
                     <div class="button-group" style="margin-top: 1.5rem;">
-                        <a href="contact.html"> <button class="action-button">Ask about this project</button>
+                        <a href="contact.html">
+                            <button class="action-button">Ask About This Project</button>
                         </a>
                     </div>
                 </div>
             </div>
+
+
             
         </div>
     </div>

@@ -385,6 +385,104 @@ header.hide-nav {
 }
 
 /* ====================== SKILLS SECTION ====================== */
+.tech-overview {
+    margin-bottom: 4rem;
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.tech-card {
+    background: rgba(27, 29, 27, 0.7);
+    border: 1px solid rgba(160, 240, 208, 0.1);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.tech-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(160, 240, 208, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.tech-card:hover::before {
+    left: 100%;
+}
+
+.tech-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--primary);
+    box-shadow: 0 15px 40px rgba(35, 196, 131, 0.2);
+    background: rgba(35, 196, 131, 0.05);
+}
+
+.tech-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(160, 240, 208, 0.1);
+    transition: all 0.4s ease;
+}
+
+.tech-icon svg {
+    width: 50px;
+    height: 50px;
+    color: var(--primary);
+    transition: all 0.4s ease;
+}
+
+.tech-card:hover .tech-icon {
+    background: rgba(160, 240, 208, 0.2);
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 10px 30px rgba(35, 196, 131, 0.3);
+}
+
+.tech-card:hover .tech-icon svg {
+    color: var(--primary-dark);
+    transform: scale(1.1);
+}
+
+.tech-card h4 {
+    color: var(--primary);
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.tech-card:hover h4 {
+    color: var(--primary-dark);
+}
+
+.tech-card p {
+    color: var(--muted-text-color);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    transition: color 0.3s ease;
+}
+
+.tech-card:hover p {
+    color: var(--text-light);
+}
+
 .vertical-skills {
     display: flex;
     flex-direction: column;
@@ -673,6 +771,19 @@ header.hide-nav {
 }
 
 /* ====================== PROJECTS SECTION ====================== */
+.work-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+}
+
+.section-subtitle {
+    color: var(--muted-text-color);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-top: 1rem;
+}
+
 .vertical-projects {
     display: grid;
     gap: 4rem;
@@ -685,6 +796,34 @@ header.hide-nav {
     overflow: hidden;
     border: 1px solid rgba(195, 243, 194, 0.1);
     transition: all 0.3s ease;
+    scroll-margin-top: 100px;
+}
+
+.featured-project-card {
+    border: 2px solid var(--primary-dark);
+    background: rgba(35, 196, 131, 0.05);
+    box-shadow: 0 8px 30px rgba(35, 196, 131, 0.15);
+}
+
+.featured-label {
+    display: inline-block;
+    background: var(--primary);
+    color: var(--bg-dark);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+}
+
+.project-role-info {
+    font-family: 'Space Grotesk', sans-serif;
+    padding: 0.75rem 1.25rem;
+    background: rgba(160, 240, 208, 0.08);
+    border-left: 3px solid var(--primary);
+    border-radius: 4px;
 }
 
 .project-image-vertical {
@@ -698,12 +837,20 @@ header.hide-nav {
     padding: 2.5rem;
 }
 
+.project-info h3 {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+
 .project-meta {
     display: flex;
     gap: 1.5rem;
     margin: 1rem 0;
     color: var(--primary-dark);
     font-family: 'Manrope', sans-serif;
+    font-size: 0.9rem;
 }
 
 .project-description {
@@ -728,6 +875,11 @@ header.hide-nav {
     font-size: 0.9rem;
     font-family: 'Space Grotesk', sans-serif;
     text-transform: uppercase;
+}
+
+.tech-stack-large span {
+    font-size: 1rem;
+    padding: 0.6rem 1.4rem;
 }
 
 .project-features {
@@ -755,6 +907,10 @@ header.hide-nav {
     transform: translateY(-5px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
     border-color: var(--primary);
+}
+
+.featured-project-card:hover {
+    box-shadow: 0 20px 40px rgba(35, 196, 131, 0.25);
 }
 
 /* ====================== IMAGE COLLAGE ====================== */
@@ -835,6 +991,209 @@ header.hide-nav {
 
 .collage-img:hover::after {
     bottom: 0;
+}
+
+/* ====================== PROJECT DETAIL PAGES ====================== */
+.project-detail-hero {
+    padding: 10rem 2rem 5rem;
+    text-align: center;
+}
+
+.project-detail-hero .eyebrow {
+    color: var(--primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+.project-detail-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: var(--primary);
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+}
+
+.project-detail-lead {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    color: var(--muted-text-color);
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+}
+
+.project-role-badge {
+    display: inline-block;
+    background: rgba(160, 240, 208, 0.1);
+    border: 1px solid var(--primary);
+    border-radius: 20px;
+    color: var(--primary);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-top: 1rem;
+    padding: 0.5rem 1.5rem;
+    text-transform: uppercase;
+}
+
+.project-detail-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.project-hero-image {
+    margin: 0 0 4rem;
+    text-align: center;
+}
+
+.project-hero-image img {
+    width: 100%;
+    border-radius: 12px;
+    border: 2px solid var(--primary-dark);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.image-caption {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--muted-text-color);
+    font-style: italic;
+}
+
+.project-detail-section {
+    margin-bottom: 4rem;
+}
+
+.project-detail-section h2 {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--primary-dark);
+    padding-bottom: 0.5rem;
+}
+
+.project-detail-section .details {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--muted-text-color);
+    margin-bottom: 1rem;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.feature-card {
+    padding: 2rem;
+    background: rgba(27, 29, 27, 0.5);
+    border-radius: 10px;
+    border: 1px solid rgba(160, 240, 208, 0.1);
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+    box-shadow: 0 8px 20px rgba(35, 196, 131, 0.1);
+}
+
+.feature-card h3 {
+    color: var(--primary);
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+}
+
+.feature-card p {
+    color: var(--muted-text-color);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.metric-card {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: rgba(160, 240, 208, 0.05);
+    border-radius: 10px;
+    border: 1px solid rgba(160, 240, 208, 0.15);
+}
+
+.metric-card strong {
+    display: block;
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.metric-card span {
+    display: block;
+    color: var(--muted-text-color);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.metric-note {
+    font-size: 0.85rem;
+    color: var(--muted-text-color);
+    font-style: italic;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(160, 240, 208, 0.03);
+    border-left: 3px solid var(--primary-dark);
+    border-radius: 4px;
+}
+
+.project-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.project-gallery figure {
+    margin: 0;
+}
+
+.project-gallery img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 2px solid var(--primary-dark);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-gallery img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(35, 196, 131, 0.2);
+}
+
+.project-gallery figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--muted-text-color);
+    text-align: center;
+}
+
+.project-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.liblocker-gallery {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 }
 
 /* ====================== PERSONAL INFO ====================== */
@@ -989,6 +1348,10 @@ footer {
         font-size: 2.5rem;
     }
     
+    .hero-copy {
+        font-size: 1rem;
+    }
+    
     /* Sections */
     .section {
         padding: 5rem 1.5rem;
@@ -996,6 +1359,14 @@ footer {
     
     .section-title {
         font-size: 2rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+    }
+    
+    .work-intro {
+        margin-bottom: 3rem;
     }
     
     /* Background elements */
@@ -1052,6 +1423,17 @@ footer {
     .contact-item {
         padding: 1rem;
     }
+    
+    .contact-hero-layout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .contact-hero-form {
+        border-left: none;
+        border-top: 2px solid var(--primary-dark);
+        padding: 2rem 0 0 0;
+    }
 
     /* Timeline */
     .education-timeline {
@@ -1075,12 +1457,20 @@ footer {
     }
 
     /* Projects */
+    .vertical-projects {
+        gap: 3rem;
+    }
+    
     .project-image-vertical {
-        height: 250px;
+        height: 200px;
     }
     
     .project-info {
         padding: 1.5rem;
+    }
+    
+    .project-info h3 {
+        font-size: 1.5rem;
     }
     
     .tech-stack span {
@@ -1090,6 +1480,16 @@ footer {
     
     .project-description {
         font-size: 1rem;
+    }
+    
+    .project-role-info {
+        font-size: 0.85rem;
+        padding: 0.6rem 1rem;
+    }
+    
+    .featured-label {
+        font-size: 0.65rem;
+        padding: 0.35rem 0.85rem;
     }
 
     /* Collage */
