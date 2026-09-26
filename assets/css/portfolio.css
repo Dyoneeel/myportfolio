@@ -2897,21 +2897,23 @@ body {
     display: grid;
     grid-template-columns: minmax(0, 0.44fr) minmax(0, 0.56fr);
     align-items: stretch;
-    height: 430px;
-    min-height: 430px;
+    height: 360px !important;
+    min-height: 360px !important;
+    max-height: 360px;
     background: var(--bg-light);
     border: 1px solid var(--border-color);
     border-radius: 1rem;
     overflow: hidden;
     color: inherit;
     position: relative;
+    box-sizing: border-box;
 }
 
 .project-card-carousel .project-image-vertical {
     height: 100%;
     min-height: 0;
     aspect-ratio: auto;
-    padding: 1rem;
+    padding: 0.8rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2933,7 +2935,7 @@ body {
 .project-card-carousel .project-info {
     min-width: 0;
     min-height: 0;
-    padding: 2.25rem;
+    padding: 1.65rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -2989,8 +2991,9 @@ body {
 
 @media (max-width: 1000px) {
     .project-card-carousel {
-        height: 400px;
-        min-height: 400px;
+        height: 340px !important;
+        min-height: 340px !important;
+        max-height: 340px;
         grid-template-columns: minmax(0, 0.46fr) minmax(0, 0.54fr);
     }
 
