@@ -3108,104 +3108,272 @@ body {
     }
 }
 
-/* ====================== MOBILE HAMBURGER BUTTON FIX ====================== */
-/* Force the navigation toggle to keep a transparent background in every theme.
-   These rules intentionally use high specificity and !important so browser
-   button defaults cannot introduce a white panel in dark mode. */
-button.hamburger,
-header button.hamburger,
-.hamburger {
-    display: none;
-    width: 30px;
-    height: 24px;
-    min-width: 30px;
-    min-height: 24px;
-    padding: 0 !important;
-    margin: 0;
-    border: 0 !important;
-    border-radius: 0;
-    background: transparent !important;
-    background-color: transparent !important;
-    background-image: none !important;
-    box-shadow: none !important;
-    color: inherit;
-    outline: none;
-    -webkit-appearance: none !important;
-    appearance: none !important;
-    -webkit-tap-highlight-color: transparent;
-}
-
-button.hamburger:hover,
-button.hamburger:active,
-button.hamburger:focus,
-button.hamburger:focus-visible,
-header button.hamburger:hover,
-header button.hamburger:active,
-header button.hamburger:focus,
-header button.hamburger:focus-visible,
-.hamburger:hover,
-.hamburger:active,
-.hamburger:focus,
-.hamburger:focus-visible {
-    background: transparent !important;
-    background-color: transparent !important;
-    background-image: none !important;
-    box-shadow: none !important;
-    outline: none;
-}
-
-.hamburger .line {
-    display: block;
-    width: 100%;
-    height: 3px;
-    flex: 0 0 3px;
-    background: var(--primary) !important;
-    border: 0;
-    border-radius: 999px;
-}
-
-[data-theme="light"] .hamburger,
-[data-theme="light"] button.hamburger,
-[data-theme="light"] header button.hamburger {
-    background: transparent !important;
-    background-color: transparent !important;
-    background-image: none !important;
-    box-shadow: none !important;
-}
-
+/* ====================== WORK PAGE — MOBILE PROJECT CARD FIX ====================== */
+/* Keep the project image and project details in the same card on narrow screens. */
 @media (max-width: 768px) {
-    button.hamburger,
-    header button.hamburger,
-    .hamburger {
+    .vertical-projects {
+        width: 100%;
+    }
+
+    .vertical-projects .project-card-vertical {
         display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        max-height: none;
+        overflow: hidden;
         align-items: stretch;
-        justify-content: space-between;
-        width: 30px;
-        height: 24px;
+    }
+
+    .vertical-projects .project-image-vertical,
+    .vertical-projects .project-image-clickable {
+        display: flex;
+        flex: 0 0 auto;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        max-height: none;
+        aspect-ratio: 16 / 9;
+        padding: 0.75rem;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .vertical-projects .project-image-vertical > img,
+    .vertical-projects .project-image-clickable > img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        object-position: center;
+    }
+
+    .vertical-projects .project-info {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        width: 100%;
+        min-width: 0;
+        min-height: auto;
+        height: auto;
+        max-height: none;
+        padding: 1.35rem;
+        overflow: visible;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .vertical-projects .project-info h3,
+    .vertical-projects .project-info .project-meta,
+    .vertical-projects .project-info .project-description,
+    .vertical-projects .project-info .tech-stack,
+    .vertical-projects .project-info .project-role-info,
+    .vertical-projects .project-info .button-group {
+        position: relative;
+        z-index: 1;
+    }
+
+    .vertical-projects .project-info h3 {
+        margin-bottom: 0.65rem;
+        font-size: clamp(1.45rem, 7vw, 1.9rem);
+        line-height: 1.1;
+    }
+
+    .vertical-projects .project-info .project-meta {
+        margin: 0.35rem 0 1rem;
+        gap: 0.75rem 1rem;
+    }
+
+    .vertical-projects .project-info .project-description {
+        margin: 0 0 1rem;
+        font-size: 0.95rem;
+        line-height: 1.65;
+        min-height: 0;
+    }
+
+    .vertical-projects .project-info .tech-stack {
+        margin: 0 0 0.25rem;
+        gap: 0.55rem;
+    }
+
+    .vertical-projects .project-info .project-role-info {
+        margin-top: 1rem !important;
+    }
+
+    .vertical-projects .project-info .button-group {
+        margin-top: 1.15rem !important;
+        justify-content: flex-start;
+        width: 100%;
     }
 }
 
-@media (max-width: 420px) {
-    button.hamburger,
-    header button.hamburger,
-    .hamburger {
-        width: 28px;
-        height: 22px;
-        min-width: 28px;
+@media (max-width: 480px) {
+    .vertical-projects .project-image-vertical,
+    .vertical-projects .project-image-clickable {
+        aspect-ratio: 16 / 10;
+        padding: 0.6rem;
+    }
+
+    .vertical-projects .project-info {
+        padding: 1.1rem;
+    }
+
+    .vertical-projects .project-info h3 {
+        font-size: 1.4rem;
+    }
+
+    .vertical-projects .project-info .project-description {
+        font-size: 0.9rem;
     }
 }
 
-/* ====================== FEATURED LABEL VISIBILITY FIX ====================== */
-.featured-project-card .featured-label {
-    background: var(--primary) !important;
-    color: var(--bg-dark) !important;
-    border: 1px solid var(--primary) !important;
-    opacity: 1 !important;
-    text-shadow: none !important;
+/* ====================== WORK PAGE — MOBILE VISIBILITY OVERRIDE ====================== */
+/*
+   Final mobile safeguard for the Work page.
+   The image and project information are always rendered as two visible
+   stacked sections on small screens. This prevents AOS/desktop layout
+   rules from leaving the project details hidden or outside the card.
+*/
+@media screen and (max-width: 768px) {
+    .vertical-projects {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        width: 100% !important;
+        gap: 1.5rem !important;
+    }
+
+    .vertical-projects .project-card-vertical {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        overflow: visible !important;
+        position: relative !important;
+        align-items: stretch !important;
+    }
+
+    .vertical-projects .project-card-vertical > .project-image-vertical,
+    .vertical-projects .project-card-vertical > .project-image-clickable {
+        display: flex !important;
+        position: relative !important;
+        flex: 0 0 auto !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        aspect-ratio: 16 / 9 !important;
+        padding: 0.65rem !important;
+        margin: 0 !important;
+        align-items: center !important;
+        justify-content: center !important;
+        overflow: hidden !important;
+    }
+
+    .vertical-projects .project-card-vertical > .project-image-vertical > img,
+    .vertical-projects .project-card-vertical > .project-image-clickable > img {
+        display: block !important;
+        position: static !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-width: 0 !important;
+        min-height: 0 !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        object-fit: contain !important;
+        object-position: center !important;
+        margin: 0 !important;
+    }
+
+    .vertical-projects .project-card-vertical > .project-info {
+        display: block !important;
+        position: static !important;
+        flex: 0 0 auto !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        min-height: 0 !important;
+        height: auto !important;
+        max-height: none !important;
+        margin: 0 !important;
+        padding: 1.25rem !important;
+        overflow: visible !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        clip: auto !important;
+        clip-path: none !important;
+    }
+
+    .vertical-projects .project-card-vertical > .project-info > * {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+    }
+
+    .vertical-projects .project-card-vertical > .project-info h3 {
+        display: block !important;
+        margin: 0 0 0.6rem !important;
+        font-size: clamp(1.35rem, 6vw, 1.8rem) !important;
+        line-height: 1.15 !important;
+    }
+
+    .vertical-projects .project-card-vertical > .project-info .project-meta {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        margin: 0 0 0.9rem !important;
+        gap: 0.5rem 0.9rem !important;
+    }
+
+    .vertical-projects .project-card-vertical > .project-info .project-description {
+        display: block !important;
+        margin: 0 0 1rem !important;
+        min-height: 0 !important;
+        height: auto !important;
+        font-size: 0.94rem !important;
+        line-height: 1.6 !important;
+    }
+
+    .vertical-projects .project-card-vertical > .project-info .tech-stack {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        margin: 0 0 0.75rem !important;
+        gap: 0.5rem !important;
+    }
+
+    .vertical-projects .project-card-vertical > .project-info .project-role-info {
+        display: block !important;
+        margin: 0.9rem 0 0 !important;
+    }
+
+    .vertical-projects .project-card-vertical > .project-info .button-group {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        width: 100% !important;
+        margin-top: 1rem !important;
+        gap: 0.6rem !important;
+    }
 }
 
-[data-theme="light"] .featured-project-card .featured-label {
-    background: var(--primary) !important;
-    color: #ffffff !important;
-    border-color: var(--primary) !important;
+@media screen and (max-width: 480px) {
+    .vertical-projects .project-card-vertical > .project-image-vertical,
+    .vertical-projects .project-card-vertical > .project-image-clickable {
+        aspect-ratio: 16 / 10 !important;
+        padding: 0.55rem !important;
+    }
+
+    .vertical-projects .project-card-vertical > .project-info {
+        padding: 1rem !important;
+    }
+
+    .vertical-projects .project-card-vertical > .project-info .tech-stack span {
+        font-size: 0.68rem !important;
+        padding: 0.38rem 0.65rem !important;
+    }
 }
