@@ -3029,3 +3029,66 @@ body {
         line-height: 1.65;
     }
 }
+
+/* ====================== BUTTON GROUP — KEEP ACTION + ARROW SIDE-BY-SIDE ====================== */
+/* Keep the primary button and circular arrow button together at every viewport size. */
+.button-group {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.button-group .action-button {
+    width: auto;
+    max-width: none;
+    flex: 0 1 auto;
+    white-space: nowrap;
+}
+
+.button-group .icon-button {
+    flex: 0 0 50px;
+}
+
+@media (max-width: 768px) {
+    .button-group {
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 0.7rem;
+        width: 100%;
+    }
+
+    .button-group .action-button {
+        width: auto;
+        max-width: none;
+        padding: 1.05em 1.65em;
+        font-size: 11px;
+        letter-spacing: 2px;
+        white-space: nowrap;
+    }
+
+    .button-group .icon-button {
+        width: 46px;
+        height: 46px;
+        flex: 0 0 46px;
+    }
+}
+
+@media (max-width: 480px) {
+    .button-group {
+        gap: 0.55rem;
+    }
+
+    .button-group .action-button {
+        padding: 0.95em 1.35em;
+        font-size: 10px;
+        letter-spacing: 1.6px;
+    }
+
+    .button-group .icon-button {
+        width: 44px;
+        height: 44px;
+        flex-basis: 44px;
+    }
+}
