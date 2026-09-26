@@ -6,23 +6,35 @@ document.documentElement.dataset.theme = initialTheme;
 
 function updateThemeToggle(theme) {
     if (!themeToggle) return;
+
     const lightMode = theme === 'light';
     const nextModeLabel = lightMode ? 'dark mode' : 'light mode';
+
     themeToggle.setAttribute('aria-pressed', String(lightMode));
     themeToggle.setAttribute('aria-label', `Switch to ${nextModeLabel}`);
     themeToggle.setAttribute('title', `Switch to ${nextModeLabel}`);
+
     const label = themeToggle.querySelector('.theme-label');
-    if (label) label.textContent = lightMode ? 'Dark mode' : 'Light mode';
+
+    if (label) {
+        label.textContent = lightMode ? 'Dark mode' : 'Light mode';
+    }
 }
 
 updateThemeToggle(initialTheme);
 
 themeToggle?.addEventListener('click', () => {
-    const nextTheme = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+    const nextTheme =
+        document.documentElement.dataset.theme === 'light'
+            ? 'dark'
+            : 'light';
+
     document.documentElement.dataset.theme = nextTheme;
     localStorage.setItem('portfolio-theme', nextTheme);
+
     updateThemeToggle(nextTheme);
 });
+
 
 // Scroll reveal
 if (typeof AOS !== 'undefined') {
@@ -35,6 +47,7 @@ if (typeof AOS !== 'undefined') {
     });
 }
 
+
 // Mobile navigation
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
@@ -44,7 +57,12 @@ function setMenuOpen(open) {
 
     hamburger.classList.toggle('active', open);
     navLinks.classList.toggle('active', open);
-    hamburger.setAttribute('aria-expanded', String(open));
+
+    hamburger.setAttribute(
+        'aria-expanded',
+        String(open)
+    );
+
     hamburger.setAttribute(
         'aria-label',
         open ? 'Close navigation' : 'Open navigation'
@@ -55,7 +73,8 @@ function setMenuOpen(open) {
         line.style.opacity = '';
 
         if (open && index === 0) {
-            line.style.transform = 'translateY(9px) rotate(45deg)';
+            line.style.transform =
+                'translateY(9px) rotate(45deg)';
         }
 
         if (open && index === 1) {
@@ -63,21 +82,29 @@ function setMenuOpen(open) {
         }
 
         if (open && index === 2) {
-            line.style.transform = 'translateY(-9px) rotate(-45deg)';
+            line.style.transform =
+                'translateY(-9px) rotate(-45deg)';
         }
     });
 }
 
 hamburger?.addEventListener('click', () => {
-    setMenuOpen(!hamburger.classList.contains('active'));
+    setMenuOpen(
+        !hamburger.classList.contains('active')
+    );
 });
 
 document.querySelectorAll('#navLinks a').forEach(link => {
-    link.addEventListener('click', () => setMenuOpen(false));
+    link.addEventListener('click', () => {
+        setMenuOpen(false);
+    });
 });
 
-// Header scroll state. One listener handles both shadow and hide-on-scroll behavior.
+
+// Header scroll state.
+// One listener handles both shadow and hide-on-scroll behavior.
 const header = document.querySelector('header');
+
 let lastScrollTop =
     window.pageYOffset ||
     document.documentElement.scrollTop ||
@@ -110,10 +137,16 @@ window.addEventListener(
             header.classList.remove('hide-nav');
         }
 
-        lastScrollTop = Math.max(0, currentScroll);
+        lastScrollTop = Math.max(
+            0,
+            currentScroll
+        );
     },
-    { passive: true }
+    {
+        passive: true
+    }
 );
+
 
 // Smooth scrolling for same-page anchors only.
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -135,157 +168,333 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// EmailJS contact form
+
+// ============================================================
+// EmailJS Contact Form
+// ============================================================
+
 const emailJsConfig = {
     publicKey: 'yipLmWU_DtuGyaVDa',
     serviceId: 'service_6b0t2o8',
     templateId: 'template_pctgzjb'
 };
 
-const contactForm = document.getElementById('contactForm');
-const formStatus = document.getElementById('formStatus');
+const contactForm =
+    document.getElementById('contactForm');
+
+const formStatus =
+    document.getElementById('formStatus');
 
 if (contactForm && formStatus) {
-    contactForm.addEventListener('submit', async event => {
-        event.preventDefault();
 
-        const submitButton =
-            contactForm.querySelector('button[type="submit"]');
+    contactForm.addEventListener(
+        'submit',
+        async event => {
 
-        if (!window.emailjs) {
-            formStatus.textContent =
-                'Email delivery is not configured yet. Please contact me directly.';
-            formStatus.className = 'form-status is-error';
-            return;
-        }
+            event.preventDefault();
 
-        submitButton?.setAttribute('disabled', 'disabled');
-
-        if (submitButton) {
-            submitButton.textContent = 'Sending...';
-        }
-
-        formStatus.textContent = '';
-        formStatus.className = 'form-status';
-
-        try {
-            emailjs.init({
-                publicKey: emailJsConfig.publicKey
-            });
-
-            // Keep the HTML form fields simple while also providing
-            // the exact variable names used by the EmailJS template.
-            const nameValue =
-                contactForm.elements.name?.value.trim() || '';
-
-            const emailValue =
-                contactForm.elements.email?.value.trim() || '';
-
-            const subjectValue =
-                contactForm.elements.subject?.value.trim() || '';
-
-            const syncField = (name, value) => {
-                let field = contactForm.querySelector(
-                    `[data-emailjs-field="${name}"]`
+            const submitButton =
+                contactForm.querySelector(
+                    'button[type="submit"]'
                 );
 
-                if (!field) {
-                    field = document.createElement('input');
-                    field.type = 'hidden';
-                    field.name = name;
-                    field.dataset.emailjsField = name;
-                    contactForm.appendChild(field);
-                }
 
-                field.value = value;
-            };
+            // Check whether EmailJS loaded.
+            if (!window.emailjs) {
 
-            // The current EmailJS template uses:
-            // {{name}}, {{email}}, {{title}}, and {{message}}.
-            syncField('user_name', nameValue);
-            syncField('user_email', emailValue);
-            syncField('title', subjectValue);
-            syncField('from_name', nameValue);
-            syncField('reply_to', emailValue);
+                formStatus.textContent =
+                    'EmailJS could not be loaded. Please contact me directly by email.';
 
-            await emailjs.sendForm(
-                emailJsConfig.serviceId,
-                emailJsConfig.templateId,
-                contactForm
+                formStatus.className =
+                    'form-status is-error';
+
+                console.error(
+                    'EmailJS library is not available.'
+                );
+
+                return;
+            }
+
+
+            // Disable button while sending.
+            submitButton?.setAttribute(
+                'disabled',
+                'disabled'
             );
-
-            contactForm.reset();
-
-            formStatus.textContent =
-                'Your message was sent successfully.';
-
-            formStatus.className =
-                'form-status is-success';
-
-        } catch (error) {
-            // IMPORTANT:
-            // This shows the real EmailJS error in the browser console.
-            console.error(
-                'EmailJS send failed:',
-                error?.text || error
-            );
-
-            formStatus.textContent =
-                'Unable to send your message right now. Please try again or email me directly.';
-
-            formStatus.className =
-                'form-status is-error';
-
-        } finally {
-            submitButton?.removeAttribute('disabled');
 
             if (submitButton) {
-                submitButton.textContent = 'Send Message';
+                submitButton.textContent =
+                    'Sending...';
+            }
+
+
+            formStatus.textContent = '';
+
+            formStatus.className =
+                'form-status';
+
+
+            try {
+
+                // Initialize EmailJS.
+                emailjs.init({
+                    publicKey:
+                        emailJsConfig.publicKey
+                });
+
+
+                // Get the values from the visible form fields.
+                const nameValue =
+                    contactForm.elements.name?.value.trim() || '';
+
+                const emailValue =
+                    contactForm.elements.email?.value.trim() || '';
+
+                const subjectValue =
+                    contactForm.elements.subject?.value.trim() || '';
+
+                const messageValue =
+                    contactForm.elements.message?.value.trim() || '';
+
+
+                /*
+                 * Your EmailJS template uses:
+                 *
+                 * {{name}}
+                 * {{email}}
+                 * {{title}}
+                 * {{message}}
+                 *
+                 * Your HTML form uses:
+                 *
+                 * name
+                 * email
+                 * subject
+                 * message
+                 *
+                 * Therefore we create hidden fields for
+                 * the EmailJS variable names that are different
+                 * from the visible form field names.
+                 */
+
+                const syncField = (
+                    name,
+                    value
+                ) => {
+
+                    let field =
+                        contactForm.querySelector(
+                            `[data-emailjs-field="${name}"]`
+                        );
+
+                    if (!field) {
+
+                        field =
+                            document.createElement(
+                                'input'
+                            );
+
+                        field.type = 'hidden';
+
+                        field.name = name;
+
+                        field.dataset.emailjsField =
+                            name;
+
+                        contactForm.appendChild(
+                            field
+                        );
+                    }
+
+                    field.value = value;
+                };
+
+
+                // EmailJS template variables.
+                syncField(
+                    'user_name',
+                    nameValue
+                );
+
+                syncField(
+                    'user_email',
+                    emailValue
+                );
+
+                syncField(
+                    'title',
+                    subjectValue
+                );
+
+                syncField(
+                    'from_name',
+                    nameValue
+                );
+
+                syncField(
+                    'reply_to',
+                    emailValue
+                );
+
+
+                /*
+                 * Send the form through EmailJS.
+                 */
+                await emailjs.sendForm(
+                    emailJsConfig.serviceId,
+                    emailJsConfig.templateId,
+                    contactForm
+                );
+
+
+                // Only reset the form after a successful send.
+                contactForm.reset();
+
+
+                formStatus.textContent =
+                    'Your message was sent successfully.';
+
+                formStatus.className =
+                    'form-status is-success';
+
+
+                console.log(
+                    'EmailJS message sent successfully.'
+                );
+
+            } catch (error) {
+
+                /*
+                 * IMPORTANT:
+                 *
+                 * This is temporarily displaying the actual
+                 * EmailJS error so we can identify the problem.
+                 */
+
+                console.error(
+                    'EmailJS send failed:',
+                    error
+                );
+
+
+                console.log(
+                    'EmailJS error details:',
+                    {
+                        status: error?.status,
+                        text: error?.text,
+                        message: error?.message
+                    }
+                );
+
+
+                const errorMessage =
+                    error?.text ||
+                    error?.message ||
+                    'Unknown EmailJS error';
+
+
+                /*
+                 * Display the actual EmailJS error on the
+                 * website temporarily.
+                 */
+                formStatus.textContent =
+                    `EmailJS Error: ${errorMessage}`;
+
+                formStatus.className =
+                    'form-status is-error';
+
+            } finally {
+
+                // Re-enable the button.
+                submitButton?.removeAttribute(
+                    'disabled'
+                );
+
+                if (submitButton) {
+                    submitButton.textContent =
+                        'Send Message';
+                }
             }
         }
-    });
+    );
 }
 
+
+// ============================================================
 // Project carousel
+// ============================================================
+
 const carouselTimers = [];
 
-document.querySelectorAll('[data-carousel]').forEach(carousel => {
+document.querySelectorAll(
+    '[data-carousel]'
+).forEach(carousel => {
+
     const track =
-        carousel.querySelector('.works-carousel-track');
+        carousel.querySelector(
+            '.works-carousel-track'
+        );
 
     const cards = [
-        ...carousel.querySelectorAll('.project-card-carousel')
+        ...carousel.querySelectorAll(
+            '.project-card-carousel'
+        )
     ];
 
-    if (!track || cards.length < 2) return;
+    if (
+        !track ||
+        cards.length < 2
+    ) {
+        return;
+    }
 
     let activeCard = 0;
 
-    const timer = window.setInterval(() => {
-        activeCard = (activeCard + 1) % cards.length;
+    const timer =
+        window.setInterval(() => {
 
-        track.scrollTo({
-            left: cards[activeCard].offsetLeft,
-            behavior: 'smooth'
-        });
-    }, 4000);
+            activeCard =
+                (activeCard + 1) %
+                cards.length;
+
+            track.scrollTo({
+                left:
+                    cards[activeCard].offsetLeft,
+                behavior: 'smooth'
+            });
+
+        }, 4000);
 
     carouselTimers.push(timer);
 });
 
+
+// ============================================================
 // Image modal
+// ============================================================
+
 const imageModal =
-    document.getElementById('imageModal');
+    document.getElementById(
+        'imageModal'
+    );
 
 const imageModalClose =
-    document.getElementById('imageModalClose');
+    document.getElementById(
+        'imageModalClose'
+    );
 
 const imageModalImg =
-    document.getElementById('imageModalImg');
+    document.getElementById(
+        'imageModalImg'
+    );
+
 
 const openImageModal = trigger => {
+
     const imgSrc =
-        trigger?.getAttribute('data-img');
+        trigger?.getAttribute(
+            'data-img'
+        );
 
     if (
         !imgSrc ||
@@ -296,36 +505,51 @@ const openImageModal = trigger => {
     }
 
     const imgAlt =
-        trigger.getAttribute('data-img-alt') ||
+        trigger.getAttribute(
+            'data-img-alt'
+        ) ||
         'Project full-size preview';
 
     imageModalImg.src = imgSrc;
+
     imageModalImg.alt = imgAlt;
 
-    imageModal.classList.add('open');
+    imageModal.classList.add(
+        'open'
+    );
+
     imageModal.setAttribute(
         'aria-hidden',
         'false'
     );
 
-    document.body.classList.add('modal-open');
+    document.body.classList.add(
+        'modal-open'
+    );
 
     imageModalClose?.focus();
 };
 
-document
-    .querySelectorAll('.project-image-clickable')
-    .forEach(trigger => {
-        trigger.addEventListener(
-            'click',
-            () => openImageModal(trigger)
-        );
-    });
+
+document.querySelectorAll(
+    '.project-image-clickable'
+).forEach(trigger => {
+
+    trigger.addEventListener(
+        'click',
+        () => openImageModal(trigger)
+    );
+
+});
+
 
 const closeModal = () => {
+
     if (!imageModal) return;
 
-    imageModal.classList.remove('open');
+    imageModal.classList.remove(
+        'open'
+    );
 
     imageModal.setAttribute(
         'aria-hidden',
@@ -341,43 +565,65 @@ const closeModal = () => {
     }
 };
 
+
 imageModalClose?.addEventListener(
     'click',
     closeModal
 );
 
+
 imageModal?.addEventListener(
     'click',
     event => {
-        if (event.target === imageModal) {
+
+        if (
+            event.target === imageModal
+        ) {
             closeModal();
         }
+
     }
 );
+
 
 document.addEventListener(
     'keydown',
     event => {
+
         if (event.key === 'Escape') {
             closeModal();
         }
+
     }
 );
 
+
+// Page loaded state
 window.addEventListener(
     'load',
-    () => document.body.classList.add('loaded')
+    () => {
+        document.body.classList.add(
+            'loaded'
+        );
+    }
 );
 
+
+// Dynamic copyright year
 document.addEventListener(
     'DOMContentLoaded',
     () => {
+
         const copyrightElem =
-            document.querySelector('.copyright');
+            document.querySelector(
+                '.copyright'
+            );
 
         if (copyrightElem) {
+
             copyrightElem.textContent =
                 `© ${new Date().getFullYear()} Jonel Andamon. ALL RIGHTS RESERVED.`;
         }
+
     }
 );
