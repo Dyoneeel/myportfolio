@@ -3377,3 +3377,10 @@ body {
         padding: 0.38rem 0.65rem !important;
     }
 }
+
+/* ====================== HOMEPAGE RECENT WORKS — HIDE TECH STACK ====================== */
+/* Keep technology tags visible on the dedicated Work page, but remove them from
+   the project cards shown in the Recent Works carousel on index.html. */
+.project-card-carousel .tech-stack {
+    display: none !important;
+}
