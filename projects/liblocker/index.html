@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LibLocker — an automated library baggage counter with dual-frequency RFID authentication, developed by Jonel Andamon for the CvSU-CCAT Campus E-Library.">
+    <meta property="og:title" content="LibLocker | Jonel Andamon">
+    <meta property="og:description" content="A Raspberry Pi and Flask-based automated library baggage counter using dual-frequency RFID authentication, locker control, and web monitoring.">
+    <meta property="og:type" content="website">
+    <title>LibLocker | Jonel Andamon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" href="../../assets/css/portfolio.css">
+    <link rel="icon" type="image/png" sizes="64x64" href="../../assets/images/branding/logo.png">
+</head>
+<body>
+    <div class="top-shadow"></div>
+    <div class="bottom-shadow"></div>
+
+    <header>
+        <div class="nav-container">
+            <div class="mobile-logo"><a href="../../index.html"><img src="../../assets/images/branding/logo.png" alt="Portfolio logo"></a></div>
+            <button class="hamburger" id="hamburger" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="navLinks">
+                <span class="line"></span><span class="line"></span><span class="line"></span>
+            </button>
+            <nav class="nav-links" id="navLinks">
+                <a href="../../about.html">About</a>
+                <a href="../../work.html" class="active">Work</a>
+                <div class="logo"><a href="../../index.html"><img src="../../assets/images/branding/logo.png" alt="Jonel Andamon home"></a></div>
+                <a href="../../skill.html">Skills</a>
+                <a href="../../contact.html">Contact</a>
+            </nav>
+            <button class="theme-toggle" type="button" aria-label="Switch to light mode" title="Switch to light mode" aria-pressed="false">
+                <span class="theme-icon" aria-hidden="true"></span>
+                <span class="theme-label">Light mode</span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="project-detail-hero liblocker-hero" data-aos="fade-up">
+            <div class="container">
+                <p class="eyebrow">Featured Project · 2026</p>
+                <h1>LIBLOCKER</h1>
+                <p class="project-detail-lead">Automated Library Baggage Counter with Dual-Frequency RFID Authentication</p>
+                <div class="project-role-badge">Lead Developer</div>
+            </div>
+        </section>
+
+        <section class="section dark-section">
+            <div class="container project-detail-content">
+                <div class="project-hero-image" data-aos="fade-up">
+                    <img src="../../projects/liblocker/images/deployed.jpg" alt="LibLocker deployed at the CvSU-CCAT E-Library">
+                    <p class="image-caption">LibLocker prototype deployed at the CvSU-CCAT Campus E-Library.</p>
+                </div>
+
+                <div class="project-detail-section" data-aos="fade-up">
+                    <h2>Project Overview</h2>
+                    <p class="details">LibLocker is an automated library baggage counter developed for the Cavite State University–CCAT Campus E-Library. It combines dual-frequency RFID authentication, automated locker control, camera-assisted transaction logging, and a web-based monitoring dashboard to improve baggage security, accountability, and transaction efficiency.</p>
+                    <p class="details">The project was developed as an undergraduate Computer Engineering design project and was installed, tested, and evaluated at the CCAT E-Library.</p>
+                </div>
+
+                <div class="project-detail-section" data-aos="fade-up">
+                    <h2>My Role</h2>
+                    <p class="details">I served as the <strong>Lead Developer</strong> and was primarily responsible for the software and system implementation. I personally developed the Raspberry Pi application, RFID authentication logic, SQLite database integration, kiosk interface, administrative dashboard, locker-management logic, and software integration with the hardware system. My team members assisted with hardware configuration and related hardware work.</p>
+                </div>
+
+                <div class="project-detail-section" data-aos="fade-up">
+                    <h2>Development Approach</h2>
+                    <p class="details">I used AI-assisted development tools throughout the project to support coding, debugging, troubleshooting, and development workflows. I remained responsible for the system design, implementation decisions, integration, testing, and adaptation of the software to the deployment environment.</p>
+                </div>
+
+                <div class="project-detail-section" data-aos="fade-up">
+                    <h2>What I Built</h2>
+                    <div class="feature-grid">
+                        <article class="feature-card"><h3>RFID Authentication</h3><p>Implemented the HF RFID kiosk workflow and UHF doorway detection used to associate physical RFID credentials with registered users.</p></article>
+                        <article class="feature-card"><h3>Raspberry Pi System</h3><p>Developed the Python-based application that coordinates the kiosk, RFID services, locker control, database operations, and connected hardware.</p></article>
+                        <article class="feature-card"><h3>Locker Management</h3><p>Implemented locker assignment, retrieval, availability monitoring, electronic locking, and door-state verification.</p></article>
+                        <article class="feature-card"><h3>Web Dashboard</h3><p>Built the Flask-based administrative interface for monitoring lockers, users, transactions, activity logs, and violations.</p></article>
+                        <article class="feature-card"><h3>Transaction Evidence</h3><p>Integrated camera-assisted transaction capture so deposit and retrieval events can be recorded with timestamped visual evidence.</p></article>
+                        <article class="feature-card"><h3>Local Data & Sync</h3><p>Implemented SQLite-based local data handling and the application's offline/online operating workflow.</p></article>
+                    </div>
+                </div>
+
+                <div class="project-detail-section" data-aos="fade-up">
+                    <h2>Technology Stack</h2>
+                    <div class="tech-stack tech-stack-large">
+                        <span>Python</span><span>Flask</span><span>SQLite</span><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Raspberry Pi</span><span>HF RFID</span><span>UHF RFID</span><span>GPIO / I2C</span>
+                    </div>
+                </div>
+
+                <div class="project-detail-section" data-aos="fade-up">
+                    <h2>System Highlights</h2>
+                    <div class="metrics-grid">
+                        <div class="metric-card"><strong>100%</strong><span>RFID pairing accuracy during testing</span></div>
+                        <div class="metric-card"><strong>100%</strong><span>Locker retrieval accuracy during testing</span></div>
+                        <div class="metric-card"><strong>6.8s</strong><span>Average transaction time</span></div>
+                        <div class="metric-card"><strong>95%</strong><span>System uptime during the testing period</span></div>
+                    </div>
+                    <p class="metric-note">Results documented in the undergraduate design project evaluation. They describe the prototype testing period and are not presented as a guarantee of ongoing production performance.</p>
+                </div>
+
+                <div class="project-detail-section" data-aos="fade-up">
+                    <h2>Interface & System Gallery</h2>
+                    <div class="project-gallery liblocker-gallery">
+                        <figure><img src="../../projects/liblocker/images/kiosk-home.jpg" alt="LibLocker kiosk interface showing registration, bag storage, and retrieval options"><figcaption>Kiosk main menu interface</figcaption></figure>
+                        <figure><img src="../../projects/liblocker/images/ui-042.jpg" alt="LibLocker locker selection interface and RFID verification workflow"><figcaption>Locker selection and RFID verification workflow</figcaption></figure>
+                        <figure><img src="../../projects/liblocker/images/dashboard.jpg" alt="LibLocker administrative dashboard showing locker status and recent activity"><figcaption>Administrative dashboard overview</figcaption></figure>
+                        <figure><img src="../../projects/liblocker/images/violations.jpg" alt="LibLocker violations monitoring page"><figcaption>Violation monitoring</figcaption></figure>
+                    </div>
+                </div>
+
+                <div class="project-detail-section" data-aos="fade-up">
+                    <h2>Deployment</h2>
+                    <p class="details">The system is currently running locally at the CvSU–CCAT E-Library. A deployment-specific version was adapted from the original project to accommodate the actual library environment. Private repositories, credentials, databases, and operational records are not published here.</p>
+                </div>
+
+                <div class="project-detail-section" data-aos="fade-up">
+                    <h2>Project Documentation</h2>
+                    <p class="details">The thesis document is kept outside the public project page while public-distribution permission remains unconfirmed.</p>
+                </div>
+
+                <div class="project-links" data-aos="fade-up">
+                    <a href="../../work.html" class="action-button">Back to My Work</a>
+                    <a href="../../contact.html" class="text-link">Contact Me</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://www.facebook.com/share/1BYpJdVybT/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">Facebook</a>
+            <a href="https://www.instagram.com/_dyoneeell?igsh=d3g4NmZldGcwbHEw" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+            <a href="https://www.linkedin.com/in/jonel-andamon-7ba1b735b?trk=contact-info" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
+        </div>
+        <p class="copyright"></p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../../assets/js/portfolio.js"></script>
+</body>
+</html>
