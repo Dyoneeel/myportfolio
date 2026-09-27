@@ -1379,6 +1379,56 @@ footer {
     will-change: opacity, transform;
 }
 
+/* ====================== EXPERIENCE SECTION ====================== */
+.experience-section {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--primary-dark);
+}
+
+.experience-section .section-title {
+    color: var(--primary);
+    font-size: 1.8rem;
+    margin-bottom: 2.5rem;
+}
+
+.experience-timeline {
+    position: relative;
+    padding-left: 3rem;
+    margin: 0 0 2rem;
+    border-left: 3px solid var(--primary);
+}
+
+.experience-timeline::before {
+    content: '';
+    position: absolute;
+    left: -3px;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        var(--primary-dark),
+        transparent
+    );
+}
+
+.experience-timeline .timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.experience-list {
+    margin: 1.25rem 0 0;
+    padding-left: 1.25rem;
+    color: var(--text);
+}
+
+.experience-list li {
+    margin-bottom: 0.75rem;
+    line-height: 1.7;
+}
+
 /* ====================== WEBINAR SECTION ====================== */
 .webinar-section {
     margin: 4rem 2rem;
@@ -1537,7 +1587,8 @@ footer {
     }
 
     /* Timeline */
-    .education-timeline {
+    .education-timeline,
+    .experience-timeline {
         padding-left: 2rem;
     }
     
@@ -3383,4 +3434,196 @@ body {
    the project cards shown in the Recent Works carousel on index.html. */
 .project-card-carousel .tech-stack {
     display: none !important;
+}
+
+/* ====================== ABOUT PAGE REFINEMENT ====================== */
+.education-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin: 2.5rem 0 4rem;
+}
+
+.education-card {
+    position: relative;
+    padding: 2rem;
+    background: linear-gradient(145deg, rgba(27, 29, 27, 0.82), rgba(13, 15, 14, 0.72));
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.education-card::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 3px;
+    background: var(--primary);
+}
+
+.education-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+    box-shadow: 0 14px 32px rgba(35, 196, 131, 0.1);
+}
+
+.education-period,
+.experience-label,
+.credential-type,
+.credentials-kicker {
+    display: inline-block;
+    color: var(--primary);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.education-card h3 {
+    margin: 0.8rem 0 0.45rem;
+    font-size: 1.25rem;
+    line-height: 1.35;
+}
+
+.education-card p,
+.education-note {
+    color: var(--muted-text-color);
+}
+
+.education-note {
+    display: block;
+    margin-top: 1rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.85rem;
+}
+
+.experience-label {
+    margin-bottom: 0.8rem;
+    opacity: 0.9;
+}
+
+.experience-label.secondary {
+    opacity: 0.7;
+}
+
+.experience-section .timeline-item {
+    margin-bottom: 1.5rem;
+    padding: 1.8rem 2rem;
+}
+
+.experience-section .timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.experience-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.experience-list li {
+    position: relative;
+    padding-left: 1.25rem;
+}
+
+.experience-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--primary);
+}
+
+.credentials-section {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 3rem;
+    margin-top: 5rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.credentials-column {
+    min-width: 0;
+}
+
+.credentials-heading {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.credentials-kicker {
+    padding-top: 0.25rem;
+    font-size: 0.65rem;
+    opacity: 0.7;
+}
+
+.credentials-heading .section-title {
+    margin: 0;
+    font-size: 1.6rem;
+}
+
+.credentials-heading p {
+    margin-top: 0.35rem;
+    color: var(--muted-text-color);
+    font-size: 0.85rem;
+}
+
+.credential-card {
+    padding: 1.5rem;
+    background: rgba(27, 29, 27, 0.58);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.credential-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary);
+}
+
+.credential-card h3 {
+    margin: 0.55rem 0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.credential-card p {
+    margin: 0;
+    color: var(--muted-text-color);
+    font-size: 0.85rem;
+}
+
+.seminar-list {
+    display: grid;
+    gap: 1rem;
+}
+
+[data-theme="light"] .education-card,
+[data-theme="light"] .credential-card {
+    background: rgba(255, 255, 255, 0.75);
+}
+
+@media (max-width: 768px) {
+    .education-grid,
+    .credentials-section {
+        grid-template-columns: 1fr;
+    }
+
+    .credentials-section {
+        gap: 2.5rem;
+    }
+
+    .education-card,
+    .experience-section .timeline-item,
+    .credential-card {
+        padding: 1.4rem;
+    }
 }
