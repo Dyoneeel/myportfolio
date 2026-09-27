@@ -3641,3 +3641,52 @@ body {
         padding: 1.4rem;
     }
 }
+
+
+/* ====================== PROJECT DATA TWO-COLUMN LAYOUT ====================== */
+.project-data-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+}
+
+.project-data-grid .project-detail-section {
+    margin-bottom: 0;
+    height: 100%;
+}
+
+.project-data-grid .project-detail-section h2 {
+    font-size: clamp(1.45rem, 2.4vw, 2rem);
+}
+
+.project-data-grid .project-detail-section .feature-grid,
+.project-data-grid .project-detail-section .metrics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.project-video-section {
+    margin-bottom: 4rem;
+}
+
+.project-trailer {
+    display: block;
+    width: 100%;
+    max-height: 620px;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    border: 1px solid var(--primary-dark);
+    border-radius: 16px;
+    background: #000;
+}
+
+@media (max-width: 800px) {
+    .project-data-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-data-grid .project-detail-section .feature-grid,
+    .project-data-grid .project-detail-section .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+}
