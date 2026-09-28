@@ -3937,6 +3937,16 @@ body {
 
 .project-page-connect .button-group {
     align-items: center;
+    flex-direction: row;
+}
+
+.project-page-connect .action-button {
+    width: auto;
+    max-width: 250px;
+}
+
+.project-page-connect .icon-button {
+    flex: 0 0 auto;
 }
 
 @media (max-width: 768px) {
