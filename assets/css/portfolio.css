@@ -3914,69 +3914,43 @@ body {
 }
 
 
-/* ====================== ESCAPE INTRO + TRAILER FINAL LAYOUT ====================== */
-/* Desktop: Project Overview and App Trailer share one balanced row. */
-/* The remaining project details stay in a single-column flow. */
-.escape-project-page .escape-intro-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 3rem;
-    align-items: start;
-    margin-bottom: 4rem;
-}
-
-.escape-project-page .escape-overview,
-.escape-project-page .escape-intro-grid .app-trailer,
-.escape-project-page .escape-intro-grid .escape-trailer {
-    min-width: 0;
-    width: 100%;
+/* ====================== PROJECT PAGE BOTTOM CTA ====================== */
+.project-bottom-navigation {
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
     margin: 0;
+    padding: 0 0 5rem;
 }
 
-.escape-project-page .escape-overview .details {
-    max-width: none;
+.project-bottom-navigation .action-button {
+    min-width: 0;
 }
 
-.escape-project-page .escape-intro-grid .app-trailer h2,
-.escape-project-page .escape-intro-grid .escape-trailer h2 {
+.project-bottom-navigation .icon-button {
+    flex: 0 0 auto;
+}
+
+.project-page-connect {
     margin-top: 0;
 }
 
-.escape-project-page .escape-intro-grid .app-trailer video,
-.escape-project-page .escape-intro-grid .escape-trailer video {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    max-height: 520px;
-    margin: 0;
-    border-radius: 14px;
-    border: 1px solid var(--primary-dark);
-    background: #000;
-    object-fit: contain;
+.project-page-connect .button-group {
+    align-items: center;
 }
 
-/* Everything after the intro row remains one column. */
-.escape-project-page > main .project-detail-content > .project-detail-section {
-    width: 100%;
-}
-
-/* Mobile: stack Overview and Trailer, then keep all details single-column. */
-@media (max-width: 800px) {
-    .escape-project-page .escape-intro-grid {
-        grid-template-columns: 1fr;
-        gap: 0;
-        margin-bottom: 0;
+@media (max-width: 768px) {
+    .project-bottom-navigation {
+        padding-bottom: 3.5rem;
+        flex-wrap: wrap;
     }
 
-    .escape-project-page .escape-overview,
-    .escape-project-page .escape-intro-grid .app-trailer,
-    .escape-project-page .escape-intro-grid .escape-trailer {
-        margin-bottom: 3rem;
+    .project-bottom-navigation .action-button {
+        width: auto;
+        max-width: 100%;
     }
 
-    .escape-project-page .escape-intro-grid .app-trailer video,
-    .escape-project-page .escape-intro-grid .escape-trailer video {
-        max-height: 70vh;
+    .project-page-connect .button-group {
+        flex-wrap: nowrap;
     }
 }
