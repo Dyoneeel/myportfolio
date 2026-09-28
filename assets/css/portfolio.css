@@ -2766,6 +2766,24 @@ body {
 }
 
 
+/* LibLocker project intro: keep the demonstration video and overview side-by-side on larger screens. */
+.liblocker-video-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid var(--primary-dark);
+    background: #000;
+}
+
+.liblocker-video-frame iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
 /* LibLocker project intro: keep the deployment image and overview side-by-side on larger screens. */
 .liblocker-intro-grid {
     display: grid;
